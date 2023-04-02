@@ -14,7 +14,7 @@ export default function NewsletterForm() {
         }}
       />
       <div className="mt-10 border-t border-gray-200">
-        <div className="mt-10 mb-5 flex flex-col space-y-3">
+        <div className="mx-5 sm:mx-auto mt-10 mb-5 flex flex-col space-y-3">
           <h3 className="text-4xl font-display">Newsletter Signup</h3>
           <p className="text-gray-500">
             Sign up for my newsletter to get updates on my latest blog posts and
