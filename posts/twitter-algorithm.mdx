@@ -24,13 +24,13 @@ Twitter's `Tweepcred` PageRank algorithm reduces the page rank of users who have
 
 > This method reduces the page rank of users who have a low number of followers but a high number of followings. It calculates a division factor based on the ratio of followings to followers, and reduces the user's page rank by dividing it by this factor.
 
-Source: [GitHub](https://dub.sh/tweepcred)
+Source: [GitHub](https://github.com/twitter/the-algorithm/blob/7f90d0ca342b928b479b512ec51ac2c3821f5922/src/scala/com/twitter/graph/batch/job/tweepcred/README#L73)
 
 ## 2. Pay-to-Play: The Twitter Blue Effect
 
 It looks like Twitter Blue subscribers do get a boost in the algorithm.
 
-Specifically, if you're a Twitter Blue subscriber, you get a 4x boost in the algorithm if you're in the same network as the author of the tweet, and a 2x boost if you're not ([source](https://dub.sh/twitter-blue-algo)).
+Specifically, if you're a Twitter Blue subscriber, you get a 4x boost in the algorithm if you're in the same network as the author of the tweet, and a 2x boost if you're not ([source](https://github.com/twitter/the-algorithm/blob/main/home-mixer/server/src/main/scala/com/twitter/home_mixer/param/HomeGlobalParams.scala#L89-L103)).
 
 ## 3. Creating engaging content is much more important than likes/retweets
 
@@ -59,7 +59,7 @@ To put this in perspective:
 - If they reply to your tweet _and_ you respond to their reply? **150x more than a like**.
 - If they report your tweet? **-738x the effect of a like** (you're basically screwed).
 
-Source: [GitHub](https://dub.sh/twitter-for-you-weights)
+Source: [GitHub](https://github.com/twitter/the-algorithm-ml/blob/78c3235eee5b4e111ccacb7d48e80eca019e480c/projects/home/recap/README.md?plain=1)
 
 ## 4. Getting blocked/muted/reported is bad. Really bad.
 
@@ -71,26 +71,26 @@ Here are some negative feedback loops that will reduce your "reputation score" o
 - Spam reports
 - Unfollows (not as heavily penalized as the above 4 though)
 
-Source: [GitHub](https://dub.sh/negative-signals)
+Source: [GitHub](https://github.com/twitter/the-algorithm/blob/main/src/scala/com/twitter/interaction_graph/scio/agg_negative/InteractionGraphNegativeJob.scala#L52-L86)
 
 ## 5. The Government can interfere with the algorithm
 
 When needed, the government can intervene with the Twitter algorithm.
 
-In fact, this probably happens so often that Twitter Engineers even has a class for it - [`GovernmentRequested`](https://dub.sh/twitter-gov-intervention).
+In fact, this probably happens so often that Twitter Engineers even has a class for it - [`GovernmentRequested`](https://github.com/twitter/the-algorithm/blob/ec83d01dcaebf369444d75ed04b3625a0a645eb9/product-mixer/core/src/main/scala/com/twitter/product_mixer/core/functional_component/marshaller/response/urt/item/forward_pivot/SoftInterventionDisplayTypeMarshaller.scala#L22).
 
 Presidential elections is also another big part of the Twitter Algorithm. During election events, the algorithm can:
 
-- Recommend election candidates to follow ([source](https://dub.sh/twitter-gov-election))
-- Suppress misinformation ([source](https://dub.sh/twitter-gov-election-msnfo))
+- Recommend election candidates to follow ([source](https://github.com/twitter/the-algorithm/blob/ec83d01dcaebf369444d75ed04b3625a0a645eb9/follow-recommendations-service/common/src/main/scala/com/twitter/follow_recommendations/common/clients/strato/StratoClientModule.scala#L187-L191))
+- Suppress misinformation ([source](https://github.com/twitter/the-algorithm/blob/ec83d01dcaebf369444d75ed04b3625a0a645eb9/visibilitylib/src/main/scala/com/twitter/visibility/models/TweetSafetyLabel.scala#L175-L179))
 
 Yup, very Big-Brother-ly.
 
 ## 6. Images & Videos are good for the algorithm
 
-In the current light ranking model (Earlybird), tweets with images & videos seem to get a nice 2x boost ([source](https://dub.sh/earlybird-media-boost)).
+In the current light ranking model (Earlybird), tweets with images & videos seem to get a nice 2x boost ([source](https://github.com/twitter/the-algorithm/blob/ec83d01dcaebf369444d75ed04b3625a0a645eb9/home-mixer/server/src/main/scala/com/twitter/home_mixer/util/earlybird/RelevanceSearchUtil.scala#L36-L37)).
 
-However, this is an old model that Twitter is planning to rebuild completely, so things might change in the future ([source](https://dub.sh/earlybird)).
+However, this is an old model that Twitter is planning to rebuild completely, so things might change in the future ([source](https://github.com/twitter/the-algorithm/blob/main/src/python/twitter/deepbird/projects/timelines/scripts/models/earlybird/README.md)).
 
 ## 7. The algorithm will consider more of your tweets if you have a high TweepCred
 
@@ -102,7 +102,7 @@ However, if your TweepCred is greater than 65, this limit is lifted, which means
 
 That being said, you still have to make sure that your tweets are actually valuable content - remember, other users can still [mute/block you/report your tweets as spam](#4-getting-blockedmutedreported-is-bad-really-bad) if they deem your content to be low-quality, which can severely hurt your reputation score.
 
-Source: [GitHub](https://dub.sh/twitter-anti-gaming)
+Source: [GitHub](https://github.com/twitter/the-algorithm/blob/ec83d01dcaebf369444d75ed04b3625a0a645eb9/src/thrift/com/twitter/search/common/ranking/ranking.thrift#L284-L291)
 
 ## 8. Your Tweets' relevancy decreases over time
 
@@ -115,7 +115,7 @@ Some additional parameters:
 - The overall rate at which the relavancy score of older tweets decrease is set at 0.003
 - The minimal age decay score a tweet can have is 0.6
 
-Source: [GitHub](https://dub.sh/tweet-decay-score)
+Source: [GitHub](https://github.com/twitter/the-algorithm/blob/ec83d01dcaebf369444d75ed04b3625a0a645eb9/src/thrift/com/twitter/search/common/ranking/ranking.thrift#L14-L21)
 
 ## To be continued...
 
