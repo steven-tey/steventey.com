@@ -92,11 +92,23 @@ In the current light ranking model (Earlybird), tweets with images & videos seem
 
 However, this is an old model that Twitter is planning to rebuild completely, so things might change in the future ([source](https://dub.sh/earlybird)).
 
-## 7. Your Tweet's relevancy decreases over time
+## 7. The algorithm will consider more of your tweets if you have a high TweepCred
+
+If your [TweepCred](#1-your-following-to-follower-ratio-matters) is high enough, more of your tweets will be considered by the ranking algorithm.
+
+Currently, if your TweepCred is lesser than 65, the maximum number of tweets that will be considered by the ranking algorithm is limited to 3.
+
+However, if your TweepCred is greater than 65, this limit is lifted, which means that you can post as many tweets as you want, and the algorithm will consider all of them. E.g. with threads, you can post a lot of tweets in a short period of time, and they will still be considered by the algorithm.
+
+That being said, you still have to make sure that your tweets are actually valuable content - remember, other users can still [mute/block you/report your tweets as spam](#4-getting-blockedmutedreported-is-bad-really-bad) if they deem your content to be low-quality, which can severely hurt your reputation score.
+
+Source: [GitHub](https://dub.sh/twitter-anti-gaming)
+
+## 8. Your Tweets' relevancy decreases over time
 
 Like most social media platforms, older Tweets on Twitter become less relavant (and are shown less often to other users) over time.
 
-More specifically, Tweets have a half-life of 360 minutes, which means that **a Tweet's relevancy score will decrease by 50% every 6 hours**.
+More specifically, Tweets have a half-life of 360 minutes, which means that **a Tweet's relavancy score will decrease by 50% every 6 hours**.
 
 Some additional parameters:
 
