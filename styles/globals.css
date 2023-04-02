@@ -26,5 +26,5 @@
 }
 
 .prose a {
-  @apply underline-offset-4 font-semibold text-gray-500 hover:text-gray-800 transition-colors;
+  @apply underline-offset-4 font-medium text-gray-600 hover:text-gray-800 transition-colors;
 }

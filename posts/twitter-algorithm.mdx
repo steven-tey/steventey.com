@@ -24,7 +24,17 @@ Twitter's `Tweepcred` PageRank algorithm reduces the page rank of users who have
 
 > This method reduces the page rank of users who have a low number of followers but a high number of followings. It calculates a division factor based on the ratio of followings to followers, and reduces the user's page rank by dividing it by this factor.
 
-Source: [GitHub](https://github.com/twitter/the-algorithm/blob/7f90d0ca342b928b479b512ec51ac2c3821f5922/src/scala/com/twitter/graph/batch/job/tweepcred/README#L73)
+Source: [GitHub](https://github.com/twitter/the-algorithm/blob/7f90d0ca342b928b479b512ec51ac2c3821f5922/src/scala/com/twitter/graph/batch/job/`Tweepcred`/README#L73)
+
+The `Tweepcred` algorithm is derived from Google's famous [PageRank algorithm](https://en.wikipedia.org/wiki/PageRank), which is used to rank web pages.
+
+Here's how the `Tweepcred` algorithm works:
+
+1. Assign a numerical score to each user based on the number and quality of interactions they have with other users - the higher the score, the more influential the user is on Twitter.
+2. Calculate a user's reputation score based on factors like account age, number of followers, and device usage.
+3. Adjust the user's score based on their follower-to-following ratio.
+4. The final score, on a scale of 0 to 100, is the `Tweepcred` score, which represents the user's reputation on Twitter.
+5. This score is used to determine which users should be recommended to follow or which users should have their content highlighted.
 
 ## 2. Pay-to-Play: The Twitter Blue Effect
 
@@ -92,13 +102,13 @@ In the current light ranking model (Earlybird), tweets with images & videos seem
 
 However, this is an old model that Twitter is planning to rebuild completely, so things might change in the future ([source](https://github.com/twitter/the-algorithm/blob/main/src/python/twitter/deepbird/projects/timelines/scripts/models/earlybird/README.md)).
 
-## 7. The algorithm will consider more of your tweets if you have a high TweepCred
+## 7. The algorithm will consider more of your tweets if you have a high `Tweepcred`
 
-If your [TweepCred](#1-your-following-to-follower-ratio-matters) is high enough, more of your tweets will be considered by the ranking algorithm.
+If your [`Tweepcred`](#1-your-following-to-follower-ratio-matters) is high enough, more of your tweets will be considered by the ranking algorithm.
 
-Currently, if your TweepCred is lesser than 65, the maximum number of tweets that will be considered by the ranking algorithm is limited to 3.
+Currently, if your `Tweepcred` is lesser than 65, the maximum number of tweets that will be considered by the ranking algorithm is limited to 3.
 
-However, if your TweepCred is greater than 65, this limit is lifted, which means that you can post as many tweets as you want, and the algorithm will consider all of them. E.g. with threads, you can post a lot of tweets in a short period of time, and they will still be considered by the algorithm.
+However, if your `Tweepcred` is greater than 65, this limit is lifted, which means that you can post as many tweets as you want, and the algorithm will consider all of them. E.g. with threads, you can post a lot of tweets in a short period of time, and they will still be considered by the algorithm.
 
 That being said, you still have to make sure that your tweets are actually valuable content - remember, other users can still [mute/block you/report your tweets as spam](#4-getting-blockedmutedreported-is-bad-really-bad) if they deem your content to be low-quality, which can severely hurt your reputation score.
 
