@@ -18,7 +18,7 @@ export default function Home() {
           className="rounded-full"
         />
         <h1 className="font-display text-5xl">Programmer. Writer. Pianist.</h1>
-        <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+        <p className="mt-6 text-base text-zinc-600">
           Hey, I'm Steven. I'm a Senior Developer Advocate at{" "}
           <a
             href="https://vercel.com/"
@@ -30,7 +30,7 @@ export default function Home() {
           </a>
           , where I help build the future of the web.
         </p>
-        <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+        <p className="mt-6 text-base text-zinc-600">
           I also maintain projects like{" "}
           <a
             href="https://dub.sh/"
@@ -51,7 +51,7 @@ export default function Home() {
           </a>
           .
         </p>
-        <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+        <p className="mt-6 text-base text-zinc-600">
           As you can probably tell, this website is still a work in progress.
         </p>
         <div className="mt-6 flex gap-6">

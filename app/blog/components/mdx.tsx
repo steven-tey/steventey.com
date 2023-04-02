@@ -39,7 +39,7 @@ export function MDX({ code, tweets }: MDXProps) {
     return <Tweet metadata={tweet} />;
   };
   return (
-    <article className="mx-5 sm:mx-auto prose prose-thead:text-lg prose-headings:font-display prose-h2:text-3xl prose-neutral dark:prose-invert">
+    <article className="mx-5 sm:mx-auto prose prose-thead:text-lg prose-headings:font-display prose-h2:text-3xl prose-neutral">
       <Component components={{ ...components, StaticTweet }} />
     </article>
   );

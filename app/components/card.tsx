@@ -30,7 +30,7 @@ Card.Link = function CardLink({
 }) {
   return (
     <>
-      <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl" />
+      <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl" />
       <Link href={props.href} {...props}>
         <span className="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl" />
         <span className="relative z-10">{children}</span>
@@ -49,7 +49,7 @@ Card.Title = function CardTitle({
   children: ReactNode;
 }) {
   return (
-    <Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+    <Component className="text-base font-semibold tracking-tight text-zinc-800">
       {href ? <Card.Link href={href}>{children}</Card.Link> : children}
     </Component>
   );
@@ -60,11 +60,7 @@ Card.Description = function CardDescription({
 }: {
   children: ReactNode;
 }) {
-  return (
-    <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-      {children}
-    </p>
-  );
+  return <p className="relative z-10 mt-2 text-sm text-zinc-600">{children}</p>;
 };
 
 Card.Cta = function CardCta({ children }: { children: ReactNode }) {
@@ -96,7 +92,7 @@ Card.Eyebrow = function CardEyebrow({
     <Component
       className={cx(
         className,
-        "relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500",
+        "relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400",
         decorate && "pl-3.5"
       )}
       {...props}
@@ -106,7 +102,7 @@ Card.Eyebrow = function CardEyebrow({
           className="absolute inset-y-0 left-0 flex items-center"
           aria-hidden="true"
         >
-          <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
+          <span className="h-4 w-0.5 rounded-full bg-zinc-200" />
         </span>
       )}
       {children}
