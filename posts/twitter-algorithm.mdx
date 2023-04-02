@@ -1,0 +1,97 @@
+---
+title: How the Twitter Algorithm works in 2023
+publishedAt: 2023-03-31
+summary: "On March 31, 2023, Twitter open-sourced their algorithm. Here are some of my takeaways about how their algorithm works after diving into their codebase."
+image: "https://images.unsplash.com/photo-1611605698335-8b1569810432"
+---
+
+On March 31, 2023, Twitter [open-sourced their algorithm](https://blog.twitter.com/engineering/en_us/topics/open-source/2023/twitter-recommendation-algorithm).
+
+It was a big day for Twitter, and for open-source. The Twitter algorithm is one of the most important parts of the Twitter experience - it determines what you see on your "For You" page, your notifications, and your search results.
+
+<StaticTweet id="1641872259320274944" />
+
+Aptly named "The Algorithm", Twitter's algorithm can be found on 2 different GitHub repositories:
+
+- [the-algorithm](https://github.com/twitter/the-algorithm)
+- [the-algorithm-ml](https://github.com/twitter/the-algorithm-ml)
+
+Here are some of my takeaways about how the Twitter algorithm works after diving into those codebases.
+
+## 1. Your following-to-follower ratio matters.
+
+Twitter's `Tweepcred` PageRank algorithm reduces the page rank of users who have a low number of followers but a high number of followings.
+
+> This method reduces the page rank of users who have a low number of followers but a high number of followings. It calculates a division factor based on the ratio of followings to followers, and reduces the user's page rank by dividing it by this factor.
+
+Source: [GitHub](https://dub.sh/tweepcred)
+
+## 2. Pay-to-Play: The Twitter Blue Effect
+
+It looks like Twitter Blue subscribers do get a boost in the algorithm.
+
+Specifically, if you're a Twitter Blue subscriber, you get a 4x boost in the algorithm if you're in the same network as the author of the tweet, and a 2x boost if you're not ([source](https://dub.sh/twitter-blue-algo)).
+
+## 3. Creating engaging content is much more important than likes/retweets
+
+There are a few factors that determine if your tweet will appear on someone's "For You" tab.
+
+These are calculated by a `heavy-ranker` algorithm, which receives various features describing the Tweet + the user whose timeline is being ranked for, and outputs binary predictions about how the user will engage with the Tweet.
+
+Below are some of the probabilities that the algorithm outputs, along with their respective sentiments and weights:
+
+| User Action                                                          | Sentiment | Weight |
+| -------------------------------------------------------------------- | --------- | ------ |
+| Like your tweet                                                      | Positive  | 0.5    |
+| Retweet your tweet                                                   | Positive  | 1      |
+| Click into your tweet & reply/like a tweet or stay there for >2 mins | Positive  | 11     |
+| Check out your profile and like/reply to a tweet                     | Positive  | 12     |
+| Reply to your tweet                                                  | Positive  | 27     |
+| Reply to your tweet and you engage with this reply                   | Positive  | 75     |
+| Request "show less often" on your Tweet/you, block or mute you       | Negative  | -74    |
+| Report your Tweet                                                    | Negative  | -369   |
+
+To put this in perspective:
+
+- A user clicking on your tweet & staying there for >2 min is weighted **22x more than them just liking your tweet**.
+- If they click into your profile through your tweet & likes/replies to a tweet? **24x more than a like**.
+- If they reply to your tweet? **54x more than a like**.
+- If they reply to your tweet _and_ you respond to their reply? **150x more than a like**.
+- If they report your tweet? **-738x the effect of a like** (you're basically screwed).
+
+Source: [GitHub](https://dub.sh/twitter-for-you-weights)
+
+## 4. Getting blocked/muted/reported is bad. Really bad.
+
+Here are some negative feedback loops that will reduce your "reputation score" on Twitter:
+
+- Getting blocked
+- Getting muted
+- Abuse reports
+- Spam reports
+- Unfollows (not as heavily penalized as the above 4 though)
+
+Source: [GitHub](https://dub.sh/negative-signals)
+
+## 5. The Government can interfere with the algorithm
+
+When needed, the government can intervene with the Twitter algorithm.
+
+In fact, this probably happens so often that Twitter Engineers even has a class for it - [`GovernmentRequested`](https://dub.sh/twitter-gov-intervention).
+
+Presidential elections is also another big part of the Twitter Algorithm. During election events, the algorithm can:
+
+- Recommend election candidates to follow ([source](https://dub.sh/twitter-gov-election))
+- Suppress misinformation ([source](https://dub.sh/twitter-gov-election-msnfo))
+
+Yup, very Big-Brother-ly.
+
+## 6. Images & Videos are good for the algorithm
+
+In the current light ranking model (Earlybird), tweets with images & videos seem to get a nice 2x boost ([source](https://dub.sh/earlybird-media-boost)).
+
+However, this is an old model that Twitter is planning to rebuild completely, so things might change in the future ([source](https://dub.sh/earlybird)).
+
+## To be continued...
+
+This post is a work in progress - I'm still going through the codebase, so I'll update this post as I find more interesting things.
