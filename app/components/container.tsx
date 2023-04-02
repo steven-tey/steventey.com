@@ -24,7 +24,7 @@ export default function Container({ children }: { children: ReactNode }) {
   const segment = useSelectedLayoutSegments();
 
   return (
-    <main className="mx-auto max-w-2xl lg:max-w-5xl mt-16 sm:mt-32">
+    <main className="mx-5 sm:mx-auto max-w-2xl lg:max-w-5xl mt-16 sm:mt-32">
       {segment.length === 1 && (
         <div className="max-w-2xl">
           <h1 className="text-4xl font-display tracking-tight text-zinc-800 sm:text-5xl">
