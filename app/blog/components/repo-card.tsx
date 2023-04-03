@@ -35,7 +35,7 @@ export default function RepoCard({
               {description}
             </p>
           </div>
-          <GitHubIcon fill="#71717A" className="w-12 h-12" />
+          <GitHubIcon fill="#71717A" className="w-8 h-8 sm:w-10 sm:h-10" />
         </div>
         <div className="flex justify-between items-end">
           <div className="mt-4 flex items-center space-x-6">
