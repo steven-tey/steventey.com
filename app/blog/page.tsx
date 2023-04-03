@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default async function Blog() {
   return (
-    <div className="mt-16 sm:mt-20 md:border-l md:border-zinc-100 md:pl-6">
+    <div className="mx-5 sm:mx-auto mt-16 sm:mt-20 md:border-l md:border-zinc-100 md:pl-6">
       <div className="flex max-w-3xl flex-col space-y-16">
         {allPosts
           .sort((a, b) => {

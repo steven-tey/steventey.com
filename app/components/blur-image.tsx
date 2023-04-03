@@ -15,7 +15,7 @@ const BlurImage = (props: any) => {
       alt={props.alt}
       className={cx(
         props.className,
-        "rounded-lg duration-300 ease",
+        "duration-300 ease",
         isLoading
           ? "blur-sm" // to create the blur loading effect
           : "blur-none"
