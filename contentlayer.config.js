@@ -9,6 +9,15 @@ const computedFields = {
     type: "string",
     resolve: (doc) => doc._raw.flattenedPath,
   },
+  images: {
+    type: "array",
+    resolve: (doc) => {
+      const imageMatches = doc.body.raw.match(
+        /(?<=<BlurImage[^>]*\bsrc=")[^"]+(?="[^>]*\/>)/g
+      );
+      return imageMatches;
+    },
+  },
   tweetIds: {
     type: "array",
     resolve: (doc) => {

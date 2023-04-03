@@ -33,17 +33,3 @@ export function formatDate(dateString: string) {
     timeZone: "UTC",
   });
 }
-
-export async function getBlurDataURL(url: string | null) {
-  if (!url) {
-    return "data:image/webp;base64,AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-  }
-  try {
-    const response = await fetch(`${url}?auto=format&fit=crop&w=100&q=10`);
-    const buffer = await response.arrayBuffer();
-    const base64 = Buffer.from(buffer).toString("base64");
-    return `data:image/png;base64,${base64}`;
-  } catch (error) {
-    return "data:image/webp;base64,AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-  }
-}

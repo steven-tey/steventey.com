@@ -4,10 +4,11 @@ import { allPosts } from "contentlayer/generated";
 import { MDX } from "../components/mdx";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { formatDate, getBlurDataURL } from "@/lib/utils";
-import Image from "next/image";
+import { formatDate } from "@/lib/utils";
+import { getBlurDataURL, getImages } from "@/lib/images";
 import getTweets from "@/lib/twitter";
 import NewsletterForm from "../components/newsletter-form";
+import BlurImage from "@/app/components/blur-image";
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -67,10 +68,12 @@ export default async function BlogPost({
   if (!post) {
     notFound();
   }
-  const tweets = await getTweets(post.tweetIds);
-  const blurDataURL = await getBlurDataURL(
-    post.image ?? "/images/placeholder.png"
-  );
+
+  const [images, tweets] = await Promise.all([
+    getImages(post.images),
+    getTweets(post.tweetIds),
+  ]);
+
   return (
     <div className="lg:relative">
       <div className="mx-auto max-w-2xl mb-20">
@@ -93,17 +96,17 @@ export default async function BlogPost({
               <span className="ml-3">{formatDate(post.publishedAt)}</span>
             </time>
           </div>
-          <Image
-            src={post.image ?? "/images/placeholder.png"}
+          <BlurImage
+            src={post.image}
             alt={post.title}
             width={1200}
             height={900}
             placeholder="blur"
-            blurDataURL={blurDataURL}
+            blurDataURL={await getBlurDataURL(post.image!)}
             className="sm:rounded-3xl my-10"
           />
 
-          <MDX code={post.body.code} tweets={tweets} />
+          <MDX code={post.body.code} images={images} tweets={tweets} />
         </div>
         <NewsletterForm />
       </div>

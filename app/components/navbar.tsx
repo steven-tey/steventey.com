@@ -112,7 +112,7 @@ const MobileNav = () => {
         variants={variants}
         className="absolute grid w-full gap-3 px-10 py-16"
       >
-        {navItems.map((item) => (
+        {navItems.map((item, idx) => (
           <>
             <MenuItem key={item}>
               <Link
@@ -128,7 +128,10 @@ const MobileNav = () => {
               </Link>
             </MenuItem>
 
-            <MenuItem className="my-3 h-px w-full bg-gray-300" />
+            <MenuItem
+              key={`divider-${idx}`}
+              className="my-3 h-px w-full bg-gray-300"
+            />
           </>
         ))}
       </motion.ul>
