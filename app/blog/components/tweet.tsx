@@ -236,32 +236,39 @@ export default function Tweet({
 
       <div className="flex justify-center space-x-8 text-sm text-gray-500">
         <a
-          className="group flex items-center space-x-3 hover:text-red-600"
+          className="group flex items-center space-x-2"
           href={likeUrl}
           target="_blank"
           rel="noreferrer"
         >
-          <Heart className="h-4 w-4 group-hover:fill-red-600" />
-          <p>{nFormatter(public_metrics.like_count)}</p>
+          <Heart className="h-4 w-4 group-hover:text-red-600 group-hover:fill-red-600" />
+          <p className="group-hover:text-red-600">
+            {nFormatter(public_metrics.like_count)}
+          </p>
         </a>
+
         <a
-          className="flex items-center space-x-3 hover:text-green-600"
+          className="flex items-center space-x-2 hover:text-green-500"
           href={retweetUrl}
           target="_blank"
           rel="noreferrer"
         >
-          <Repeat className="h-4 w-4" />
-          <p>{nFormatter(public_metrics.retweet_count)}</p>
+          <Repeat className="h-4 w-4 group-hover:text-green-600" />
+          <p className="group-hover:text-green-600">
+            {nFormatter(public_metrics.retweet_count)}
+          </p>
         </a>
 
         <a
-          className="group flex items-center space-x-3 hover:text-blue-600"
+          className="group flex items-center space-x-2 hover:text-blue-600"
           href={replyUrl}
           target="_blank"
           rel="noreferrer"
         >
-          <Message className="h-4 w-4 group-hover:fill-blue-600" />
-          <p>{nFormatter(public_metrics.reply_count)}</p>
+          <Message className="h-4 w-4 group-hover:text-blue-600 group-hover:fill-blue-600" />
+          <p className="group-hover:text-blue-600">
+            {nFormatter(public_metrics.reply_count)}
+          </p>
         </a>
       </div>
     </div>

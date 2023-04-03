@@ -3,9 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useMDXComponent } from "next-contentlayer/hooks";
-import Tweet from "@/app/components/tweet";
 import cx from "classnames";
 import { useEffect, useState } from "react";
+import Tweet from "./tweet";
+import RepoCard, { GithubRepoProps } from "./repo-card";
 
 const CustomLink = (props: any) => {
   const href = props.href;
@@ -33,9 +34,10 @@ interface MDXProps {
   code: string;
   images: { url: string; blurDataURL: string }[];
   tweets: any[];
+  repos: GithubRepoProps[];
 }
 
-export function MDX({ code, images, tweets }: MDXProps) {
+export function MDX({ code, images, tweets, repos }: MDXProps) {
   const Component = useMDXComponent(code);
 
   const BlurImage = (props: any) => {
@@ -50,7 +52,7 @@ export function MDX({ code, images, tweets }: MDXProps) {
         alt={props.alt}
         className={cx(
           props.className,
-          "rounded-lg duration-300 ease",
+          "rounded-lg duration-300 ease w-full",
           isLoading
             ? "blur-sm" // to create the blur loading effect
             : "blur-none"
@@ -71,9 +73,17 @@ export function MDX({ code, images, tweets }: MDXProps) {
     const tweet = tweets.find((tweet: any) => tweet.id === id);
     return <Tweet metadata={tweet} />;
   };
+
+  const GithubRepo = ({ url }: { url: string }) => {
+    const repo = repos.find((repo) => repo.url === url);
+    return <RepoCard {...repo!} />;
+  };
+
   return (
     <article className="mx-5 sm:mx-auto prose prose-thead:text-lg prose-headings:font-display prose-h2:text-3xl prose-neutral">
-      <Component components={{ ...components, BlurImage, StaticTweet }} />
+      <Component
+        components={{ ...components, BlurImage, StaticTweet, GithubRepo }}
+      />
     </article>
   );
 }

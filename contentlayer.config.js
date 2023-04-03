@@ -12,10 +12,9 @@ const computedFields = {
   images: {
     type: "array",
     resolve: (doc) => {
-      const imageMatches = doc.body.raw.match(
+      return doc.body.raw.match(
         /(?<=<BlurImage[^>]*\bsrc=")[^"]+(?="[^>]*\/>)/g
       );
-      return imageMatches;
     },
   },
   tweetIds: {
@@ -25,6 +24,15 @@ const computedFields = {
         /<StaticTweet\sid="[0-9]+"\s\/>/g
       );
       return tweetMatches?.map((tweet) => tweet.match(/[0-9]+/g)[0]) || [];
+    },
+  },
+  githubRepos: {
+    type: "array",
+    resolve: (doc) => {
+      // match all <GithubRepo url=""/> and extract the url
+      return doc.body.raw.match(
+        /(?<=<GithubRepo[^>]*\burl=")[^"]+(?="[^>]*\/>)/g
+      );
     },
   },
   structuredData: {

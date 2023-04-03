@@ -9,6 +9,7 @@ import { getBlurDataURL, getImages } from "@/lib/images";
 import getTweets from "@/lib/twitter";
 import NewsletterForm from "../components/newsletter-form";
 import BlurImage from "@/app/components/blur-image";
+import getRepos from "@/lib/github";
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -69,9 +70,10 @@ export default async function BlogPost({
     notFound();
   }
 
-  const [images, tweets] = await Promise.all([
+  const [images, tweets, repos] = await Promise.all([
     getImages(post.images),
     getTweets(post.tweetIds),
+    getRepos(post.githubRepos),
   ]);
 
   return (
@@ -106,7 +108,12 @@ export default async function BlogPost({
             className="sm:rounded-3xl my-10"
           />
 
-          <MDX code={post.body.code} images={images} tweets={tweets} />
+          <MDX
+            code={post.body.code}
+            images={images}
+            tweets={tweets}
+            repos={repos}
+          />
         </div>
         <NewsletterForm />
       </div>
