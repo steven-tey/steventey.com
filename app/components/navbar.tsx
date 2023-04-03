@@ -110,29 +110,22 @@ const MobileNav = () => {
       />
       <motion.ul
         variants={variants}
-        className="absolute grid w-full gap-3 px-10 py-16"
+        className="absolute grid w-full px-10 py-16"
       >
-        {navItems.map((item, idx) => (
-          <>
-            <MenuItem key={item}>
-              <Link
-                href={`/${item}`}
-                className={`flex w-full font-semibold capitalize ${
-                  segment === item ? "text-teal-500" : ""
-                }`}
-                onClick={() => {
-                  toggleOpen();
-                }}
-              >
-                {item}
-              </Link>
-            </MenuItem>
-
-            <MenuItem
-              key={`divider-${idx}`}
-              className="my-3 h-px w-full bg-gray-300"
-            />
-          </>
+        {navItems.map((item) => (
+          <MenuItem key={item} className="border-b border-gray-300 py-5">
+            <Link
+              href={`/${item}`}
+              className={`flex w-full font-semibold capitalize ${
+                segment === item ? "text-teal-500" : ""
+              }`}
+              onClick={() => {
+                toggleOpen();
+              }}
+            >
+              {item}
+            </Link>
+          </MenuItem>
         ))}
       </motion.ul>
       <MenuToggle toggle={toggleOpen} />
@@ -213,10 +206,10 @@ const MenuItemVariants = {
 
 const variants = {
   open: {
-    transition: { staggerChildren: 0.04, delayChildren: 0.2 },
+    transition: { staggerChildren: 0.07, delayChildren: 0.2 },
   },
   closed: {
-    transition: { staggerChildren: 0.02, staggerDirection: -1 },
+    transition: { staggerChildren: 0.03, staggerDirection: -1 },
   },
 };
 
