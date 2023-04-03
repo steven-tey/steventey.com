@@ -2,7 +2,6 @@
 
 import { useSelectedLayoutSegments } from "next/navigation";
 import { ReactNode } from "react";
-import Script from "next/script";
 
 const meta: Record<string, { title: string; description: string }> = {
   about: {
@@ -26,14 +25,6 @@ export default function Container({ children }: { children: ReactNode }) {
 
   return (
     <main className="max-w-2xl lg:max-w-5xl mt-16 sm:mt-32 mx-auto">
-      <Script
-        id="tally-js"
-        src="https://tally.so/widgets/embed.js"
-        onReady={() => {
-          // @ts-ignore
-          Tally.loadEmbeds();
-        }}
-      />
       {segment.length === 1 && (
         <div className="max-w-2xl mx-5 sm:mx-0">
           <h1 className="text-4xl font-display tracking-tight text-zinc-800 sm:text-5xl">
