@@ -29,7 +29,7 @@ export default function Container({ children }: { children: ReactNode }) {
       <Script
         id="tally-js"
         src="https://tally.so/widgets/embed.js"
-        onLoad={() => {
+        onReady={() => {
           // @ts-ignore
           Tally.loadEmbeds();
         }}
