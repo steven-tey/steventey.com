@@ -17,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cx(clash.variable, inter.className)}>
+      <body
+        className={cx(clash.variable, inter.className, "overflow-x-hidden")}
+      >
         <Analytics />
         <NavBar />
         <Container>{children}</Container>
