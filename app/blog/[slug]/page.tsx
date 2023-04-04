@@ -34,7 +34,9 @@ export async function generateMetadata({
     image,
     slug,
   } = post;
-  const ogImage = image || `https://steventey.com/profile.jpg`;
+  const ogImage = image
+    ? `https://steventey.com${image}`
+    : `https://steventey.com/api/og?title=${encodeURIComponent(title)}}`;
 
   return {
     title,

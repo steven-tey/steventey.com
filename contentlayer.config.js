@@ -46,7 +46,9 @@ const computedFields = {
       description: doc.summary,
       image: doc.image
         ? `https://steventey.com${doc.image}`
-        : `https://steventey.com/api/og?title=${doc.title}`,
+        : `https://steventey.com/api/og?title=${encodeURIComponent(
+            doc.title
+          )}}`,
       url: `https://steventey.com/blog/${doc._raw.flattenedPath}`,
       author: {
         "@type": "Person",
