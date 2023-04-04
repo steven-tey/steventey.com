@@ -104,6 +104,7 @@ export default async function BlogPost({
             alt={post.title}
             width={1200}
             height={900}
+            priority // since it's above the fold
             placeholder="blur"
             blurDataURL={await getBlurDataURL(post.image!)}
             className="sm:rounded-3xl my-10"
