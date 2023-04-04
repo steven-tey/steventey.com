@@ -93,7 +93,7 @@ export default async function BlogPost({
             </h1>
             <time
               dateTime={post.publishedAt}
-              className="order-first flex items-center text-base text-zinc-400"
+              className="order-first flex items-center text-base text-zinc-500"
             >
               <span className="h-4 w-0.5 rounded-full bg-zinc-200" />
               <span className="ml-3">{formatDate(post.publishedAt)}</span>

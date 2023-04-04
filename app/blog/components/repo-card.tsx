@@ -27,10 +27,10 @@ export default function RepoCard({
       >
         <div className="flex items-start justify-between">
           <div>
-            <h3 className="text-2xl font-normal">
+            <p className="text-2xl font-normal">
               {orgName}/
               <span className="font-bold text-gray-800">{repoName}</span>
-            </h3>
+            </p>
             <p className="text-gray-500 font-normal text-sm mt-2">
               {description}
             </p>
