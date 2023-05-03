@@ -80,7 +80,10 @@ export function MDX({ code, images, tweets, repos }: MDXProps) {
   };
 
   return (
-    <article className="mx-5 sm:mx-auto prose prose-thead:text-lg prose-headings:font-display prose-h2:text-3xl prose-neutral">
+    <article
+      className="mx-5 sm:mx-auto prose prose-thead:text-lg prose-headings:font-display prose-h2:text-3xl prose-a:font-medium prose-a:text-gray-500 
+    prose-a:underline-offset-4 hover:prose-a:text-black prose-neutral"
+    >
       <Component
         components={{ ...components, BlurImage, StaticTweet, GithubRepo }}
       />

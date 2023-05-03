@@ -1,0 +1,234 @@
+---
+title: How to Build a ChatGPT Plugin with Next.js in 2023
+publishedAt: 2023-05-02
+summary: "When OpenAI announced ChatGPT Plugins in March, it took the world by storm. Here's a step-by-step tutorial of how to build your own ChatGPT Plugin with Next.js & Vercel."
+image: "/images/chatgpt-plugin.png"
+---
+
+When OpenAI announced [ChatGPT Plugins](https://openai.com/blog/chatgpt-plugins) in March, it took the world by storm.
+
+Plugins are a way to extend the functionality of ChatGPT by adding new features and capabilities. They can be used for anything from browsing the web to brainstorming a grocery list on Instacart, and more.
+
+A few days after ChatGPT Plugins was announced, I built a free ChatGPT Plugin that helps you brainstorm domain ideas by automatically checking if they are available inside ChatGPT.
+
+<StaticTweet id="1640378476950855680" />
+
+Today – roughly a month later – that Plugin was [added as an official plugin](https://twitter.com/steventey/status/1653578240999424005) on the ChatGPT Plugin store, and will soon be accessible by all 1B+ users on ChatGPT.
+
+## So...how can I build one?
+
+Thanks to how intuitive the developer experience of building a ChatGPT Plugin is, it's actually not too complicated to build one yourself.
+
+In essense, all you need to build a ChatGPT Plugin is:
+
+1. Your [API backend](#1-api-backend)
+2. A Plugin manifest file
+3. An OpenAPI spec
+
+In this article, we'll walk through the process of building a ChatGPT Plugin using Next.js and deploying it to Vercel.
+
+## Quickstart
+
+Here's the repo for the plugin we'll be building in this article:
+
+<GithubRepo url="https://github.com/steven-tey/weathergpt" />
+
+You can also clone & deploy it to Vercel [with one click](https://vercel.com/new/clone?demo-title=WeatherGPT+%E2%80%93%C2%A0ChatGPT+Plugin+Starter&demo-description=The+ultimate+ChatGPT+Plugin+starter+template.+WeatherGPT+is+a+ChatGPT+Plugin+to+get+the+weather+of+any+given+location.&demo-url=https%3A%2F%2Fweathergpt.vercel.app%2F&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F7Ft2fS9gtS9XtxUNVJJENP%2F04a68855bda0524982d3c15cbd2628ac%2FCleanShot_2023-04-13_at_12.37.09.png&project-name=WeatherGPT+%E2%80%93%C2%A0ChatGPT+Plugin+Starter&repository-name=weathergpt&repository-url=https%3A%2F%2Fgithub.com%2Fsteven-tey%2Fweathergpt&from=templates&skippable-integrations=1&env=WEATHER_API_KEY&envDescription=Get+your+WeatherAPI+key+here%3A&envLink=https%3A%2F%2Fwww.weatherapi.com%2F&teamCreateStatus=hidden).
+
+## About the Plugin
+
+The ChatGPT Plugin we'll be building in this article is WeatherGPT – a plugin to get the weather of any given location.
+
+It can also make appropriate recommendations of what outfits to wear given the weather.
+
+E.g. "Should I wear a jacket in Boston today?"
+
+<BlurImage
+  src="https://user-images.githubusercontent.com/28986134/231851083-4a00ffd8-9372-42b4-a3c8-534b0435ee25.png"
+  width={600}
+  height={400}
+  alt="WeatherGPT screenshot"
+/>
+
+If you have access to Plugins, you can try this plugin out!
+
+1. Go to the Plugin Store
+2. Click "Install an unverified plugin"
+3. Enter "https://weathergpt.vercel.app"
+4. Click "Install".
+
+<video width="100%" autoPlay loop className="rounded-lg border border-gray-300">
+  <source
+    src="https://user-images.githubusercontent.com/28986134/231842599-ab80ccc2-b1c2-4d24-bdfc-c023eebdf320.mp4"
+    type="video/mp4"
+  />
+</video>
+
+## Tech Stack
+
+Here's the tech stack that we'll be using to build our ChatGPT Plugin:
+
+- [Next.js](https://nextjs.org/) for the API backend
+- [Edge Functions](https://vercel.com/edge) for retrieving and returning weather data
+- [ImageResponse API](https://beta.nextjs.org/docs/api-reference/image-response) for generating dynamic OG images
+- [Vercel](https://vercel.com) for hosting and deployment
+
+## 1. API Backend
+
+Thanks to Next.js' [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers), it was fairly simple to build the API backend for WeatherGPT.
+
+```typescript
+import { NextRequest, NextResponse } from "next/server";
+import { geolocation } from "@vercel/edge";
+import { getWeatherData } from "@/app/lib/utils";
+
+export const runtime = "edge";
+
+export async function GET(req: NextRequest) {
+  let location = req.nextUrl.searchParams.get("location");
+  if (!location) {
+    const { city } = geolocation(req);
+    location = city || "San Francisco";
+  }
+
+  const response = await fetch(
+    `http://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER_API_KEY}&q=${location}&aqi=no`
+  ).then((res) => res.json());
+
+  return NextResponse.json({
+    ...response,
+    infoLink: `https://weathergpt.vercel.app/${encodeURIComponent(location)}`,
+  });
+}
+```
+
+Here, we are using the [WeatherAPI](https://www.weatherapi.com/) to retrieve weather data for a given location.
+
+In the case where there is no `location` parameter provided, it will use [Vercel's geolocation API](https://vercel.com/docs/concepts/functions/edge-functions/vercel-edge-package#geolocation) to determine the user's location and return the accurate weather data based on that.
+
+To try this out, go to https://weathergpt.vercel.app/api/weather to get a JSON response of the weather in your city – or https://weathergpt.vercel.app/ if you want a pretty UI.
+
+## 2. Plugin Manifest File
+
+Your plugin manifest file should be located in the `/.wellknown/ai-plugin.json` directory on your site.
+
+This is similar to manifest.json for a Chrome Extension, except for 1 main difference: Your description is key – it's the prompt for your Plugin. You gotta engineer the sh\*t out of it.
+
+This is the description for WeatherGPT:
+
+> Use the WeatherGPT plugin to automatically fetch current weather information for a specific location when it's being generated by the ChatGPT assistant. The plugin will return weather data, including temperature, wind speed, humidity, and other relevant information, as well as a link to a page that has all the information. Links will always be returned and should be shown to the user. The weather data can be used to provide users with up-to-date and accurate weather information for their desired location.
+
+And here's the full plugin manifest file:
+
+```json
+{
+  "schema_version": "v1",
+  "name_for_model": "WeatherGPT",
+  "name_for_human": "WeatherGPT",
+  "description_for_human": "Get current weather information for a specific location.",
+  "description_for_model": "Use the WeatherGPT plugin to automatically fetch current weather information for a specific location when it's being generated by the ChatGPT assistant. The plugin will return weather data, including temperature, wind speed, humidity, and other relevant information, as well as a link to a page that has all the information. Links will always be returned and should be shown to the user. The weather data can be used to provide users with up-to-date and accurate weather information for their desired location.",
+  "api": {
+    "type": "openapi",
+    "url": "https://weathergpt.vercel.app/openapi.json",
+    "has_user_authentication": false
+  },
+  "auth": {
+    "type": "none"
+  },
+  "logo_url": "https://weathergpt.vercel.app/logo.png",
+  "contact_email": "stey@vercel.com",
+  "legal_info_url": "https://weathergpt.vercel.app/legal"
+}
+```
+
+## 3. OpenAPI Spec
+
+This is a standard OpenAPI spec, with a stronger emphasis on the "description" fields for all endpoints. It's location should match the `api.url` field in your plugin manifest file (e.g. `/openapi.json`).
+
+Here's the OpenAPI spec for WeatherGPT: https://github.com/steven-tey/weathergpt/blob/main/public/openapi.json
+
+Pro-tip: Get GPT-4 to write it for you → https://sharegpt.com/c/lZRyrWG
+
+## Dynamic OG image cards
+
+To make the plugin more visually appealing, we can use Next.js' [ImageResponse API](https://beta.nextjs.org/docs/api-reference/image-response) to generate dynamic OG image cards for each weather location, which will be returned as a nice card link inside ChatGPT (as seen [above](#about-the-plugin)).
+
+Here's the [code](https://github.com/steven-tey/weathergpt/blob/main/app/%5Blocation%5D/opengraph-image.tsx) I'm using for the dynamic OG images in WeatherGPT.
+
+<StaticTweet id="1646936335465447425" />
+
+You can also refer to [Vercel OG image generation docs](https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation) for more information.
+
+## Securing Your API Endpoints
+
+To prevent unauthorized access to your API endpoints, you can whitelist OpenAI's IP CIDR blocks.
+
+Here's a simple code snippet you can use to veirfy that the request is coming from OpenAI:
+
+```typescript
+function ipToInt(ip: string) {
+  return ip.split(".").reduce((acc, octet) => (acc << 8) + parseInt(octet), 0);
+}
+
+function isIpInCIDR(ip: string, cidr: string) {
+  const [cidrIp, prefixLength] = cidr.split("/");
+  const mask = -1 << (32 - parseInt(prefixLength));
+  const ipInt = ipToInt(ip);
+  const cidrIpInt = ipToInt(cidrIp);
+
+  const networkAddress = cidrIpInt & mask;
+  const broadcastAddress = networkAddress | ~mask;
+
+  return ipInt >= networkAddress && ipInt <= broadcastAddress;
+}
+
+export default function validChatGPTIp(ip: string) {
+  // verify both CIDR blocks from the docs: https://platform.openai.com/docs/plugins/production/ip-egress-ranges
+  return (
+    isIpInCIDR(ip, "23.102.140.112/28") || isIpInCIDR(ip, "23.98.142.176/28")
+  );
+}
+```
+
+## Testing Your Plugin & Deploying it to Production
+
+Before deploying your plugin to production, you can test it using the following tools:
+
+- [Ngrok tunnel](https://ngrok.com/) to your localhost instance
+- [Vercel Preview URLs](https://vercel.com/features/previews)
+
+Once you're satisfied with your plugin's functionality, add it to ChatGPT with the following steps:
+
+1. Go to the plugin store.
+2. Click on "Develop your own plugin".
+3. Enter your plugin's domain.
+4. Click on "Find Manifest File" > "Next" > "Install for me".
+
+<BlurImage
+  src="https://user-images.githubusercontent.com/28986134/232164948-d77c25c8-3ace-4b8c-8d30-db8d2b6283a5.png"
+  width={600}
+  height={400}
+  alt="WeatherGPT installation"
+/>
+
+Here's a video of WeatherGPT in action:
+
+<StaticTweet id="1646582588574945280" />
+
+## Conclusion
+
+The developer experience for building a ChatGPT Plugin is sublime.
+
+I went into it expecting to write code logic to tell ChatGPT what to do. I ended up writing mostly natural language and everything _just worked_.
+
+It really takes declarative programming to the next level. The closest analogy I can think of:
+
+- JavaScript/jQuery → React/Next.js
+- Chrome Extension development → ChatGPT Plugin development
+
+Instead of writing imperative JS code, you _describe_ what you want ChatGPT to do. The rest is history.
+
+## Additional Resources
+
+- The official [ChatGPT Plugin Docs](https://platform.openai.com/docs/plugins/getting-started) by OpenAI
+- [GPT Plugins](https://www.gptplugins.app/): A ChatGPT Plugins directory by [Krish](https://twitter.com/krishnerkar)

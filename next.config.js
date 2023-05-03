@@ -10,6 +10,7 @@ const nextConfig = {
       "images.unsplash.com",
       "pbs.twimg.com",
       "avatars.githubusercontent.com",
+      "user-images.githubusercontent.com",
     ],
   },
   async redirects() {

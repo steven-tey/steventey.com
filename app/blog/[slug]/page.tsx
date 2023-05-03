@@ -73,9 +73,9 @@ export default async function BlogPost({
   }
 
   const [images, tweets, repos] = await Promise.all([
-    getImages(post.images),
-    getTweets(post.tweetIds),
-    getRepos(post.githubRepos),
+    post.images && getImages(post.images),
+    post.tweetIds && getTweets(post.tweetIds),
+    post.githubRepos && getRepos(post.githubRepos),
   ]);
 
   return (
