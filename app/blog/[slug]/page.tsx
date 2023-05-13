@@ -11,6 +11,8 @@ import NewsletterForm from "../components/newsletter-form";
 import BlurImage from "@/app/components/blur-image";
 import getRepos from "@/lib/github";
 
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
     slug: post.slug,
