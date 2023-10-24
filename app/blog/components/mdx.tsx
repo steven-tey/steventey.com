@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import cx from "classnames";
 import { useEffect, useState } from "react";
-import Tweet from "./tweet";
+import { Tweet } from "react-tweet";
 import RepoCard, { GithubRepoProps } from "./repo-card";
 
 const CustomLink = (props: any) => {
@@ -33,11 +33,10 @@ const components = {
 interface MDXProps {
   code: string;
   images: { url: string; blurDataURL: string }[];
-  tweets: any[];
   repos: GithubRepoProps[];
 }
 
-export function MDX({ code, images, tweets, repos }: MDXProps) {
+export function MDX({ code, images, repos }: MDXProps) {
   const Component = useMDXComponent(code);
 
   const BlurImage = (props: any) => {
@@ -62,7 +61,7 @@ export function MDX({ code, images, tweets, repos }: MDXProps) {
           image?.blurDataURL ||
           "data:image/webp;base64,AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
         }
-        onLoadingComplete={async () => {
+        onLoad={async () => {
           setLoading(false);
         }}
       />
@@ -70,8 +69,11 @@ export function MDX({ code, images, tweets, repos }: MDXProps) {
   };
 
   const StaticTweet = ({ id }: { id: string }) => {
-    const tweet = tweets.find((tweet: any) => tweet.id === id);
-    return <Tweet metadata={tweet} />;
+    return (
+      <div className="not-prose flex justify-center">
+        <Tweet id={id} />
+      </div>
+    );
   };
 
   const GithubRepo = ({ url }: { url: string }) => {

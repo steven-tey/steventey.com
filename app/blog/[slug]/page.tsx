@@ -6,7 +6,6 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { formatDate } from "@/lib/utils";
 import { getBlurDataURL, getImages } from "@/lib/images";
-import getTweets from "@/lib/twitter";
 import NewsletterForm from "../components/newsletter-form";
 import BlurImage from "@/app/components/blur-image";
 import getRepos from "@/lib/github";
@@ -74,9 +73,11 @@ export default async function BlogPost({
     notFound();
   }
 
-  const [images, tweets, repos] = await Promise.all([
+  const [images, repos] = await Promise.all([
     post.images && getImages(post.images),
-    post.tweetIds && getTweets(post.tweetIds),
+    // post.tweetIds
+    //   ? await Promise.all(post.tweetIds.map(async (id: string) => getTweet(id)))
+    //   : [],
     post.githubRepos && getRepos(post.githubRepos),
   ]);
 
@@ -114,12 +115,7 @@ export default async function BlogPost({
             className="sm:rounded-3xl my-10"
           />
 
-          <MDX
-            code={post.body.code}
-            images={images}
-            tweets={tweets}
-            repos={repos}
-          />
+          <MDX code={post.body.code} images={images} repos={repos} />
         </div>
         <NewsletterForm />
       </div>

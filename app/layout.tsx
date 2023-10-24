@@ -8,6 +8,7 @@ import NavBar from "./components/navbar";
 export const metadata = {
   title: "Steven Tey",
   description: "Personal website of Steven Tey",
+  metadataBase: "https://steventey.com",
 };
 
 export default function RootLayout({

@@ -20,7 +20,7 @@ const BlurImage = (props: any) => {
           ? "blur-sm" // to create the blur loading effect
           : "blur-none"
       )}
-      onLoadingComplete={async () => {
+      onLoad={async () => {
         setLoading(false);
       }}
     />
