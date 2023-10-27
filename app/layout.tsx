@@ -1,4 +1,4 @@
-import { clash, inter } from "@/styles/fonts";
+import { GeistSans, GeistMono } from "geist/font";
 import "@/styles/globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import cx from "classnames";
@@ -17,10 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body
-        className={cx(clash.variable, inter.className, "overflow-x-hidden")}
-      >
+    <html lang="en" className={cx(GeistSans.variable, GeistMono.variable)}>
+      <body className="overflow-x-hidden">
         <Analytics />
         <NavBar />
         <Container>{children}</Container>

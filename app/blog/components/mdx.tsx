@@ -83,7 +83,7 @@ export function MDX({ code, images, repos }: MDXProps) {
 
   return (
     <article
-      className="mx-5 sm:mx-auto prose prose-thead:text-lg prose-headings:font-display prose-h2:text-3xl prose-a:font-medium prose-a:text-gray-500 
+      className="mx-5 sm:mx-auto prose prose-thead:text-lg prose-h2:text-3xl prose-headings:font-bold prose-headings:tracking-tighter prose-a:font-medium prose-a:text-gray-500 
     prose-a:underline-offset-4 hover:prose-a:text-black prose-neutral"
     >
       <Component

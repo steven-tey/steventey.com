@@ -16,7 +16,9 @@ export default function Home() {
         height={60}
         className="rounded-full"
       />
-      <h1 className="font-display text-5xl">Programmer. Writer. Pianist.</h1>
+      <h1 className="text-5xl font-bold tracking-tighter">
+        Programmer. Writer. Pianist.
+      </h1>
       <p className="mt-6 text-base text-zinc-600">
         Hey, I'm Steven. I'm a Senior Developer Advocate at{" "}
         <a
@@ -38,8 +40,17 @@ export default function Home() {
           className="underline underline-offset-4 text-zinc-800 font-semibold"
         >
           Dub
-        </a>{" "}
-        and{" "}
+        </a>
+        ,{" "}
+        <a
+          href="https://novel.sh/"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="underline underline-offset-4 text-zinc-800 font-semibold"
+        >
+          Novel
+        </a>
+        , and{" "}
         <a
           href="https://oneword.domains"
           target="_blank"
@@ -49,9 +60,6 @@ export default function Home() {
           One Word Domains
         </a>
         .
-      </p>
-      <p className="mt-6 text-base text-zinc-600">
-        As you can probably tell, this website is still a work in progress.
       </p>
       <div className="mt-6 flex gap-6">
         <a

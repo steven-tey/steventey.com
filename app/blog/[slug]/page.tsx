@@ -93,7 +93,7 @@ export default async function BlogPost({
         </Link>
         <div>
           <div className="mx-5 sm:mx-auto flex flex-col">
-            <h1 className="font-display mt-6 text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl">
+            <h1 className="mt-6 text-4xl tracking-tighter font-bold text-zinc-800 sm:text-5xl">
               {post.title}
             </h1>
             <time

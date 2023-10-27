@@ -11,9 +11,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ["var(--font-clash)", "system-ui", "sans-serif"],
-        default: ["var(--font-inter)", "system-ui", "sans-serif"],
-        inter: ["var(--font-inter)", "system-ui", "sans-serif"],
+        sans: ["var(--font-geist-sans)"],
+        mono: ["var(--font-geist-mono)"],
       },
     },
   },
