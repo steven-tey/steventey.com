@@ -1,5 +1,8 @@
 {
   "github": {
     "silent": true
-  }
+  },
+  "rewrites": [
+    { "source": "/r/:slug", "destination": "https://go.steventey.com/r/:slug" }
+  ]
 }
