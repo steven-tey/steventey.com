@@ -34,7 +34,7 @@ export default function Home() {
       <p className="mt-6 text-base text-zinc-600">
         I also maintain projects like{" "}
         <a
-          href="https://dub.sh/"
+          href="https://dub.co"
           target="_blank"
           rel="noreferrer noopener"
           className="underline underline-offset-4 text-zinc-800 font-semibold"
