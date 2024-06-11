@@ -6,7 +6,7 @@ import { useSelectedLayoutSegment } from "next/navigation";
 import { motion, useCycle } from "framer-motion";
 import { ReactNode, useEffect, useRef } from "react";
 
-const navItems = ["about", "projects", "blog"];
+const navItems = ["projects", "blog"];
 
 export default function NavBar() {
   const segment = useSelectedLayoutSegment();

@@ -1,13 +1,9 @@
 "use client";
 
-import { useSelectedLayoutSegments } from "next/navigation";
+import { notFound, redirect, useSelectedLayoutSegments } from "next/navigation";
 import { ReactNode } from "react";
 
 const meta: Record<string, { title: string; description: string }> = {
-  about: {
-    title: "I'm Steven Tey. I'm a programmer, writer, and pianist.",
-    description: "A brief introduction to me, my background, and my interests.",
-  },
   projects: {
     title: "Things I've made trying to put my dent in the universe.",
     description:
@@ -22,6 +18,10 @@ const meta: Record<string, { title: string; description: string }> = {
 
 export default function Container({ children }: { children: ReactNode }) {
   const segment = useSelectedLayoutSegments();
+
+  if (segment.length > 0 && !meta[segment[0]]) {
+    redirect("/");
+  }
 
   return (
     <main className="max-w-2xl lg:max-w-5xl mt-16 sm:mt-32 mx-auto">

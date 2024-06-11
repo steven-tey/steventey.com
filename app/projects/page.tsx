@@ -6,8 +6,8 @@ const projects = [
     name: "Dub",
     description:
       "Link management for modern marketing teams. 6K stars on GitHub, 5.2K users.",
-    link: { href: "https://dub.sh", label: "dub.sh" },
-    logo: "https://dub.sh/_static/logo.png",
+    link: { href: "https://dub.co", label: "dub.co" },
+    logo: "https://dub.co/_static/logo.png",
   },
   {
     name: "DomainsGPT",
