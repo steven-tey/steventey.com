@@ -2,7 +2,23 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install dependencies
+
+Before running the project, you need to install all the required dependencies. If you encounter dependency issues, you can use the `--legacy-peer-deps` flag.
+
+```bash
+npm install
+# or
+npm install --legacy-peer-deps  # If you encounter peer dependency conflicts
+# or
+yarn install
+# or
+pnpm install
+```
+
+### 2. Run the development server
+
+Once the dependencies are installed, start the development server:
 
 ```bash
 npm run dev
