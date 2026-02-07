@@ -28,8 +28,7 @@ export default function Home() {
         >
           Dub
         </a>{" "}
-        – the open source link management infrastructure for modern marketing
-        teams.
+        – the modern link attribution platform for short links, conversion tracking, and affiliate programs.
       </p>
 
       <p className="mt-6 text-base text-zinc-600">
