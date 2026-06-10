@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@tailwindcss/typography':
         specifier: ^0.5.9
-        version: 0.5.9(tailwindcss@3.3.1)
+        version: 0.5.9(tailwindcss@3.3.1(postcss@8.4.21))
       '@types/node':
         specifier: 18.15.11
         version: 18.15.11
@@ -40,7 +40,7 @@ importers:
         version: 13.2.4(eslint@8.37.0)(typescript@5.0.3)
       framer-motion:
         specifier: ^10.10.0
-        version: 10.10.0(react-dom@18.2.0)(react@18.2.0)
+        version: 10.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       geist:
         specifier: ^1.0.0
         version: 1.0.0
@@ -49,10 +49,10 @@ importers:
         version: 0.129.0(react@18.2.0)
       next:
         specifier: 13.5.7-canary.19
-        version: 13.5.7-canary.19(@opentelemetry/api@1.1.0)(react-dom@18.2.0)(react@18.2.0)
+        version: 13.5.7-canary.19(@opentelemetry/api@1.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-contentlayer:
         specifier: ^0.3.2
-        version: 0.3.2(esbuild@0.17.14)(next@13.5.7-canary.19)(react-dom@18.2.0)(react@18.2.0)
+        version: 0.3.2(esbuild@0.17.14)(next@13.5.7-canary.19(@opentelemetry/api@1.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -60,8 +60,8 @@ importers:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
       react-tweet:
-        specifier: ^3.1.1
-        version: 3.1.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^3.3.1
+        version: 3.3.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       rehype-autolink-headings:
         specifier: ^6.1.1
         version: 6.1.1
@@ -83,7 +83,7 @@ importers:
     devDependencies:
       '@tailwindcss/forms':
         specifier: ^0.5.3
-        version: 0.5.3(tailwindcss@3.3.1)
+        version: 0.5.3(tailwindcss@3.3.1(postcss@8.4.21))
       autoprefixer:
         specifier: ^10.4.14
         version: 10.4.14(postcss@8.4.21)
@@ -128,10 +128,6 @@ packages:
     peerDependencies:
       '@effect-ts/otel-node': '*'
     peerDependenciesMeta:
-      '@effect-ts/core':
-        optional: true
-      '@effect-ts/otel':
-        optional: true
       '@effect-ts/otel-node':
         optional: true
 
@@ -569,6 +565,9 @@ packages:
   '@swc/helpers@0.5.2':
     resolution: {integrity: sha512-E4KcWTpoLHqwPHLxidpOqQbcrZVgi0rsmmZXUle1jXmJfuIf/UWpczUJ7MZZ5tlxytgJXyp0w4PGkkeLiuIdZw==}
 
+  '@swc/helpers@0.5.23':
+    resolution: {integrity: sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw==}
+
   '@tailwindcss/forms@0.5.3':
     resolution: {integrity: sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==}
     peerDependencies:
@@ -845,8 +844,8 @@ packages:
   cliui@7.0.4:
     resolution: {integrity: sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==}
 
-  clsx@1.2.1:
-    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+  clsx@2.1.1:
+    resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
 
   color-convert@2.0.1:
@@ -899,10 +898,6 @@ packages:
 
   date-fns@2.29.3:
     resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
-    engines: {node: '>=0.11'}
-
-  date-fns@2.30.0:
-    resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
     engines: {node: '>=0.11'}
 
   debug@3.2.7:
@@ -2130,11 +2125,11 @@ packages:
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
-  react-tweet@3.1.1:
-    resolution: {integrity: sha512-8GQLa5y0G56kvGQkN7OiaKkjFAhWYVdyFq62ioY2qVtpMrjchVU+3KnqneCyp0+BemOQZkg6WWp/qoCNeEMH6A==}
+  react-tweet@3.3.1:
+    resolution: {integrity: sha512-0Gj1YgBTe1K85NBMoWBlUc17Rdc67gIJLlacrVgj+3jWIoXpFfxPdZ1U5OnWkkF9zxhphqs2pY1i//JBfP3Qog==}
     peerDependencies:
-      react: '>= 18.0.0'
-      react-dom: '>= 18.0.0'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
 
   react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
@@ -2423,6 +2418,9 @@ packages:
   tslib@2.5.0:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
 
+  tslib@2.8.1:
+    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
+
   tsutils@3.21.0:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
     engines: {node: '>= 6'}
@@ -2625,7 +2623,6 @@ snapshots:
       '@contentlayer/utils': 0.3.2
       camel-case: 4.1.2
       comment-json: 4.2.3
-      esbuild: 0.17.14
       gray-matter: 4.0.3
       mdx-bundler: 9.2.1(esbuild@0.17.14)
       rehype-stringify: 9.0.3
@@ -2635,6 +2632,8 @@ snapshots:
       source-map-support: 0.5.21
       type-fest: 3.7.2
       unified: 10.1.2
+    optionalDependencies:
+      esbuild: 0.17.14
     transitivePeerDependencies:
       - '@effect-ts/otel-node'
       - supports-color
@@ -2672,9 +2671,9 @@ snapshots:
   '@contentlayer/utils@0.3.2':
     dependencies:
       '@effect-ts/core': 0.60.5
-      '@effect-ts/otel': 0.14.1(@effect-ts/core@0.60.5)(@opentelemetry/api@1.1.0)(@opentelemetry/core@1.5.0)(@opentelemetry/sdk-trace-base@1.5.0)
-      '@effect-ts/otel-exporter-trace-otlp-grpc': 0.14.1(@effect-ts/core@0.60.5)(@opentelemetry/api@1.1.0)(@opentelemetry/core@1.5.0)(@opentelemetry/exporter-trace-otlp-grpc@0.31.0)(@opentelemetry/sdk-trace-base@1.5.0)
-      '@effect-ts/otel-sdk-trace-node': 0.14.1(@effect-ts/core@0.60.5)(@opentelemetry/api@1.1.0)(@opentelemetry/core@1.5.0)(@opentelemetry/sdk-trace-base@1.5.0)(@opentelemetry/sdk-trace-node@1.5.0)
+      '@effect-ts/otel': 0.14.1(@effect-ts/core@0.60.5)(@opentelemetry/api@1.1.0)(@opentelemetry/core@1.5.0(@opentelemetry/api@1.1.0))(@opentelemetry/sdk-trace-base@1.5.0(@opentelemetry/api@1.1.0))
+      '@effect-ts/otel-exporter-trace-otlp-grpc': 0.14.1(@effect-ts/core@0.60.5)(@opentelemetry/api@1.1.0)(@opentelemetry/core@1.5.0(@opentelemetry/api@1.1.0))(@opentelemetry/exporter-trace-otlp-grpc@0.31.0(@opentelemetry/api@1.1.0))(@opentelemetry/sdk-trace-base@1.5.0(@opentelemetry/api@1.1.0))
+      '@effect-ts/otel-sdk-trace-node': 0.14.1(@effect-ts/core@0.60.5)(@opentelemetry/api@1.1.0)(@opentelemetry/core@1.5.0(@opentelemetry/api@1.1.0))(@opentelemetry/sdk-trace-base@1.5.0(@opentelemetry/api@1.1.0))(@opentelemetry/sdk-trace-node@1.5.0(@opentelemetry/api@1.1.0))
       '@js-temporal/polyfill': 0.4.3
       '@opentelemetry/api': 1.1.0
       '@opentelemetry/core': 1.5.0(@opentelemetry/api@1.1.0)
@@ -2695,25 +2694,25 @@ snapshots:
     dependencies:
       '@effect-ts/system': 0.57.5
 
-  '@effect-ts/otel-exporter-trace-otlp-grpc@0.14.1(@effect-ts/core@0.60.5)(@opentelemetry/api@1.1.0)(@opentelemetry/core@1.5.0)(@opentelemetry/exporter-trace-otlp-grpc@0.31.0)(@opentelemetry/sdk-trace-base@1.5.0)':
+  '@effect-ts/otel-exporter-trace-otlp-grpc@0.14.1(@effect-ts/core@0.60.5)(@opentelemetry/api@1.1.0)(@opentelemetry/core@1.5.0(@opentelemetry/api@1.1.0))(@opentelemetry/exporter-trace-otlp-grpc@0.31.0(@opentelemetry/api@1.1.0))(@opentelemetry/sdk-trace-base@1.5.0(@opentelemetry/api@1.1.0))':
     dependencies:
       '@effect-ts/core': 0.60.5
-      '@effect-ts/otel': 0.14.1(@effect-ts/core@0.60.5)(@opentelemetry/api@1.1.0)(@opentelemetry/core@1.5.0)(@opentelemetry/sdk-trace-base@1.5.0)
+      '@effect-ts/otel': 0.14.1(@effect-ts/core@0.60.5)(@opentelemetry/api@1.1.0)(@opentelemetry/core@1.5.0(@opentelemetry/api@1.1.0))(@opentelemetry/sdk-trace-base@1.5.0(@opentelemetry/api@1.1.0))
       '@opentelemetry/api': 1.1.0
       '@opentelemetry/core': 1.5.0(@opentelemetry/api@1.1.0)
       '@opentelemetry/exporter-trace-otlp-grpc': 0.31.0(@opentelemetry/api@1.1.0)
       '@opentelemetry/sdk-trace-base': 1.5.0(@opentelemetry/api@1.1.0)
 
-  '@effect-ts/otel-sdk-trace-node@0.14.1(@effect-ts/core@0.60.5)(@opentelemetry/api@1.1.0)(@opentelemetry/core@1.5.0)(@opentelemetry/sdk-trace-base@1.5.0)(@opentelemetry/sdk-trace-node@1.5.0)':
+  '@effect-ts/otel-sdk-trace-node@0.14.1(@effect-ts/core@0.60.5)(@opentelemetry/api@1.1.0)(@opentelemetry/core@1.5.0(@opentelemetry/api@1.1.0))(@opentelemetry/sdk-trace-base@1.5.0(@opentelemetry/api@1.1.0))(@opentelemetry/sdk-trace-node@1.5.0(@opentelemetry/api@1.1.0))':
     dependencies:
       '@effect-ts/core': 0.60.5
-      '@effect-ts/otel': 0.14.1(@effect-ts/core@0.60.5)(@opentelemetry/api@1.1.0)(@opentelemetry/core@1.5.0)(@opentelemetry/sdk-trace-base@1.5.0)
+      '@effect-ts/otel': 0.14.1(@effect-ts/core@0.60.5)(@opentelemetry/api@1.1.0)(@opentelemetry/core@1.5.0(@opentelemetry/api@1.1.0))(@opentelemetry/sdk-trace-base@1.5.0(@opentelemetry/api@1.1.0))
       '@opentelemetry/api': 1.1.0
       '@opentelemetry/core': 1.5.0(@opentelemetry/api@1.1.0)
       '@opentelemetry/sdk-trace-base': 1.5.0(@opentelemetry/api@1.1.0)
       '@opentelemetry/sdk-trace-node': 1.5.0(@opentelemetry/api@1.1.0)
 
-  '@effect-ts/otel@0.14.1(@effect-ts/core@0.60.5)(@opentelemetry/api@1.1.0)(@opentelemetry/core@1.5.0)(@opentelemetry/sdk-trace-base@1.5.0)':
+  '@effect-ts/otel@0.14.1(@effect-ts/core@0.60.5)(@opentelemetry/api@1.1.0)(@opentelemetry/core@1.5.0(@opentelemetry/api@1.1.0))(@opentelemetry/sdk-trace-base@1.5.0(@opentelemetry/api@1.1.0))':
     dependencies:
       '@effect-ts/core': 0.60.5
       '@opentelemetry/api': 1.1.0
@@ -3076,12 +3075,16 @@ snapshots:
     dependencies:
       tslib: 2.5.0
 
-  '@tailwindcss/forms@0.5.3(tailwindcss@3.3.1)':
+  '@swc/helpers@0.5.23':
+    dependencies:
+      tslib: 2.8.1
+
+  '@tailwindcss/forms@0.5.3(tailwindcss@3.3.1(postcss@8.4.21))':
     dependencies:
       mini-svg-data-uri: 1.4.4
       tailwindcss: 3.3.1(postcss@8.4.21)
 
-  '@tailwindcss/typography@0.5.9(tailwindcss@3.3.1)':
+  '@tailwindcss/typography@0.5.9(tailwindcss@3.3.1(postcss@8.4.21))':
     dependencies:
       lodash.castarray: 4.4.0
       lodash.isplainobject: 4.0.6
@@ -3148,6 +3151,7 @@ snapshots:
       '@typescript-eslint/typescript-estree': 5.57.0(typescript@5.0.3)
       debug: 4.3.4
       eslint: 8.37.0
+    optionalDependencies:
       typescript: 5.0.3
     transitivePeerDependencies:
       - supports-color
@@ -3168,6 +3172,7 @@ snapshots:
       is-glob: 4.0.3
       semver: 7.3.8
       tsutils: 3.21.0(typescript@5.0.3)
+    optionalDependencies:
       typescript: 5.0.3
     transitivePeerDependencies:
       - supports-color
@@ -3367,7 +3372,7 @@ snapshots:
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
 
-  clsx@1.2.1: {}
+  clsx@2.1.1: {}
 
   color-convert@2.0.1:
     dependencies:
@@ -3420,10 +3425,6 @@ snapshots:
   data-uri-to-buffer@4.0.1: {}
 
   date-fns@2.29.3: {}
-
-  date-fns@2.30.0:
-    dependencies:
-      '@babel/runtime': 7.21.0
 
   debug@3.2.7:
     dependencies:
@@ -3600,11 +3601,12 @@ snapshots:
       '@typescript-eslint/parser': 5.57.0(eslint@8.37.0)(typescript@5.0.3)
       eslint: 8.37.0
       eslint-import-resolver-node: 0.3.7
-      eslint-import-resolver-typescript: 3.5.4(eslint-plugin-import@2.27.5)(eslint@8.37.0)
-      eslint-plugin-import: 2.27.5(@typescript-eslint/parser@5.57.0)(eslint-import-resolver-typescript@3.5.4)(eslint@8.37.0)
+      eslint-import-resolver-typescript: 3.5.4(eslint-plugin-import@2.27.5(eslint@8.37.0))(eslint@8.37.0)
+      eslint-plugin-import: 2.27.5(@typescript-eslint/parser@5.57.0(eslint@8.37.0)(typescript@5.0.3))(eslint-import-resolver-typescript@3.5.4(eslint-plugin-import@2.27.5(eslint@8.37.0))(eslint@8.37.0))(eslint@8.37.0)
       eslint-plugin-jsx-a11y: 6.7.1(eslint@8.37.0)
       eslint-plugin-react: 7.32.2(eslint@8.37.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@8.37.0)
+    optionalDependencies:
       typescript: 5.0.3
     transitivePeerDependencies:
       - eslint-import-resolver-webpack
@@ -3618,12 +3620,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@3.5.4(eslint-plugin-import@2.27.5)(eslint@8.37.0):
+  eslint-import-resolver-typescript@3.5.4(eslint-plugin-import@2.27.5(eslint@8.37.0))(eslint@8.37.0):
     dependencies:
       debug: 4.3.4
       enhanced-resolve: 5.12.0
       eslint: 8.37.0
-      eslint-plugin-import: 2.27.5(@typescript-eslint/parser@5.57.0)(eslint-import-resolver-typescript@3.5.4)(eslint@8.37.0)
+      eslint-plugin-import: 2.27.5(@typescript-eslint/parser@5.57.0(eslint@8.37.0)(typescript@5.0.3))(eslint-import-resolver-typescript@3.5.4(eslint-plugin-import@2.27.5(eslint@8.37.0))(eslint@8.37.0))(eslint@8.37.0)
       get-tsconfig: 4.5.0
       globby: 13.1.3
       is-core-module: 2.11.0
@@ -3632,19 +3634,19 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.7.4(@typescript-eslint/parser@5.57.0)(eslint-import-resolver-node@0.3.7)(eslint-import-resolver-typescript@3.5.4)(eslint@8.37.0):
+  eslint-module-utils@2.7.4(@typescript-eslint/parser@5.57.0(eslint@8.37.0)(typescript@5.0.3))(eslint-import-resolver-node@0.3.7)(eslint-import-resolver-typescript@3.5.4(eslint-plugin-import@2.27.5(eslint@8.37.0))(eslint@8.37.0))(eslint@8.37.0):
     dependencies:
-      '@typescript-eslint/parser': 5.57.0(eslint@8.37.0)(typescript@5.0.3)
       debug: 3.2.7
+    optionalDependencies:
+      '@typescript-eslint/parser': 5.57.0(eslint@8.37.0)(typescript@5.0.3)
       eslint: 8.37.0
       eslint-import-resolver-node: 0.3.7
-      eslint-import-resolver-typescript: 3.5.4(eslint-plugin-import@2.27.5)(eslint@8.37.0)
+      eslint-import-resolver-typescript: 3.5.4(eslint-plugin-import@2.27.5(eslint@8.37.0))(eslint@8.37.0)
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.27.5(@typescript-eslint/parser@5.57.0)(eslint-import-resolver-typescript@3.5.4)(eslint@8.37.0):
+  eslint-plugin-import@2.27.5(@typescript-eslint/parser@5.57.0(eslint@8.37.0)(typescript@5.0.3))(eslint-import-resolver-typescript@3.5.4(eslint-plugin-import@2.27.5(eslint@8.37.0))(eslint@8.37.0))(eslint@8.37.0):
     dependencies:
-      '@typescript-eslint/parser': 5.57.0(eslint@8.37.0)(typescript@5.0.3)
       array-includes: 3.1.6
       array.prototype.flat: 1.3.1
       array.prototype.flatmap: 1.3.1
@@ -3652,7 +3654,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.37.0
       eslint-import-resolver-node: 0.3.7
-      eslint-module-utils: 2.7.4(@typescript-eslint/parser@5.57.0)(eslint-import-resolver-node@0.3.7)(eslint-import-resolver-typescript@3.5.4)(eslint@8.37.0)
+      eslint-module-utils: 2.7.4(@typescript-eslint/parser@5.57.0(eslint@8.37.0)(typescript@5.0.3))(eslint-import-resolver-node@0.3.7)(eslint-import-resolver-typescript@3.5.4(eslint-plugin-import@2.27.5(eslint@8.37.0))(eslint@8.37.0))(eslint@8.37.0)
       has: 1.0.3
       is-core-module: 2.11.0
       is-glob: 4.0.3
@@ -3661,6 +3663,8 @@ snapshots:
       resolve: 1.22.1
       semver: 6.3.0
       tsconfig-paths: 3.14.2
+    optionalDependencies:
+      '@typescript-eslint/parser': 5.57.0(eslint@8.37.0)(typescript@5.0.3)
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -3879,13 +3883,13 @@ snapshots:
 
   fraction.js@4.2.0: {}
 
-  framer-motion@10.10.0(react-dom@18.2.0)(react@18.2.0):
+  framer-motion@10.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
       tslib: 2.5.0
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
 
   fs-monkey@1.0.3: {}
 
@@ -4856,11 +4860,11 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next-contentlayer@0.3.2(esbuild@0.17.14)(next@13.5.7-canary.19)(react-dom@18.2.0)(react@18.2.0):
+  next-contentlayer@0.3.2(esbuild@0.17.14)(next@13.5.7-canary.19(@opentelemetry/api@1.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@contentlayer/core': 0.3.2(esbuild@0.17.14)
       '@contentlayer/utils': 0.3.2
-      next: 13.5.7-canary.19(@opentelemetry/api@1.1.0)(react-dom@18.2.0)(react@18.2.0)
+      next: 13.5.7-canary.19(@opentelemetry/api@1.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
@@ -4869,10 +4873,9 @@ snapshots:
       - markdown-wasm
       - supports-color
 
-  next@13.5.7-canary.19(@opentelemetry/api@1.1.0)(react-dom@18.2.0)(react@18.2.0):
+  next@13.5.7-canary.19(@opentelemetry/api@1.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@next/env': 13.5.7-canary.19
-      '@opentelemetry/api': 1.1.0
       '@swc/helpers': 0.5.2
       busboy: 1.6.0
       caniuse-lite: 1.0.30001473
@@ -4891,6 +4894,7 @@ snapshots:
       '@next/swc-win32-arm64-msvc': 13.5.7-canary.19
       '@next/swc-win32-ia32-msvc': 13.5.7-canary.19
       '@next/swc-win32-x64-msvc': 13.5.7-canary.19
+      '@opentelemetry/api': 1.1.0
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
@@ -5049,8 +5053,9 @@ snapshots:
   postcss-load-config@3.1.4(postcss@8.4.21):
     dependencies:
       lilconfig: 2.1.0
-      postcss: 8.4.21
       yaml: 1.10.2
+    optionalDependencies:
+      postcss: 8.4.21
 
   postcss-nested@6.0.0(postcss@8.4.21):
     dependencies:
@@ -5136,11 +5141,10 @@ snapshots:
 
   react-is@16.13.1: {}
 
-  react-tweet@3.1.1(react-dom@18.2.0)(react@18.2.0):
+  react-tweet@3.3.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
-      '@swc/helpers': 0.5.2
-      clsx: 1.2.1
-      date-fns: 2.30.0
+      '@swc/helpers': 0.5.23
+      clsx: 2.1.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       swr: 2.2.4(react@18.2.0)
@@ -5498,6 +5502,8 @@ snapshots:
   tslib@1.14.1: {}
 
   tslib@2.5.0: {}
+
+  tslib@2.8.1: {}
 
   tsutils@3.21.0(typescript@5.0.3):
     dependencies:
